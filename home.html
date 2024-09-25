@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking App</title>
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #100202;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 30px;
+        }
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #5858f4;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            width: 80%;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        li:hover {
+            background-color: #f9f9f9;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            bottom: 5px;
+            padding:8px 10px;
+            background-color: #f44336;
+            color: white;
+            border: None;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .deleteall-btn {
+            background-color: #f44336;
+            color: white;
+            border: None;
+            border-radius: 10px;
+            cursor: pointer;
+
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Quick Notes</h1>
+    <form action="/" method="post"><input type="text" name="note" placeholder="Enter a note"><button type="submit">Add Note</button> </form> 
+    <form action="/deleteall" method="post" style="display: -ms-inline-flexbox;""><button type="submit" class="deleteall-btn">delete all</button></form>
+    
+    <ul>
+        {% for index, note in notes %}
+            <li>  {{ note }}
+                <form action="/delete/{{ index }}" method="post" style="display: inline;"><button type="submit" class="delete-btn">x</button></form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
